@@ -1,0 +1,81 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the top of the
+* compiled file, but it's generally better to create a new file per style scope.
+*
+*= require_self
+*= require_tree .
+*/
+
+// import original bootstrap
+@import "twitter/bootstrap";
+
+//variables
+$link-color: #8E5687;
+$link-background: #F3ECF3;
+$header-height: 120px;
+$background: #fffef4;
+
+body {
+	background: $background;
+}
+
+
+//header
+
+#upload-button {
+	color: #FFFFFF;
+	background-color: #8E5687;
+
+}
+
+
+.header {
+	margin-top: 1em;
+	margin-bottom: 5em;
+	height: $header-height;
+	
+	img {
+		height: $header-height;
+	}
+
+	.nav {
+
+		li {
+			a {
+				margin-top: $header-height / 2 - $font-size-base * $line-height-base;
+				color: $link-color;
+				&:hover,
+				&:focus {
+					background: $link-background;
+					.caret {
+						border-top-color: $link-background;
+						border-bottom-color: $link-background;
+					}
+				}
+			}
+			
+		}
+
+
+	}
+}
+
+//body
+
+#categories {
+	.row {
+		margin-bottom: 60px;
+
+		img {
+			width: 100%
+		}
+	}	
+
+}
+
