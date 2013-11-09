@@ -38,7 +38,9 @@
 				$("#uploader").html("<a href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
 				id = response["id"];
 				permalink = response["permalink"];
+				
 				$(".fb-share-button").attr("data-href", permalink);
+
 				if (response["type_id"] == 3) {
 					
 					styleText();
