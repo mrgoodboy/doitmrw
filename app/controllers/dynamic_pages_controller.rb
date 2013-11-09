@@ -1,6 +1,8 @@
 class DynamicPagesController < ApplicationController
 	include DynamicPagesHelper
 
+  INITIAL_EDGE_WEIGHT = 1
+
 	def home
 	end
 
@@ -51,7 +53,7 @@ class DynamicPagesController < ApplicationController
   protected
 
   def connect(user_id, content_id)
-    Edge.create(user_id: user_id, content_id: content_id)
+    Edge.create(user_id: user_id, content_id: content_id, weight: INITIAL_EDGE_WEIGHT)
   end
 
 end

@@ -47,4 +47,16 @@ LIMIT
     edge_id = User.connection.select_value(sql)
     Edge.find_by_id(edge_id)
   end
+
+  def edge_count
+    edges.count
+  end
+
+  def weight_sum
+    edges.sum(:weight)
+  end
+
+  def weight_average
+    edges.average(:weight)
+  end
 end
