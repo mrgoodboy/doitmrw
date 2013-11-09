@@ -12,7 +12,7 @@
 //disables footer buttons
 $(document).ready(function(){
 	if (window.location.pathname.indexOf("funny") !== -1) {
-		
+
 		$("#s-funny-button").addClass("selected");
 	} else if (window.location.pathname.indexOf("cool") !== -1) {
 		$("#s-cool-button").addClass("selected");
@@ -32,9 +32,9 @@ $(document).ready(function(){
 		<div class="col-md-10 col-md-offset-1">
 
 			<div class="row">
-				
+
 				<div id="spinner"><i class="fa fa-spinner fa-spin"></i></div>
-				
+
 				<div id="content">
 					<% if @content  %>
 					<%= @content.html %>
@@ -121,7 +121,7 @@ function newContent() {
 			$("#uploader").append("<a class='pull-right' href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
 
 			id = response["id"];
-			
+
 
 
 			if (response["type_id"] == 3) {
@@ -131,7 +131,7 @@ function newContent() {
 			permalink = response["permalink"];
 
 
-			$("#fbposition").html("<div class='fb-like' data-href='" + permalink + "' data-layout='box_count' data-action='like' data-show-faces='true' data-share='true'></div>");
+			$("#fbposition").html("<div class='fb-like' data-href='" + permalink + "' data-layout='box_count' data-action='like' data-show-faces='true' data-share='false'></div>");
 		}
 	});
 };
@@ -143,7 +143,7 @@ $(document).ready(function() {
 		}catch(ex){}
 	});
 
-	
+
 	<% if @content == nil %>
 	newContent();
 	<% end %>
