@@ -19,8 +19,10 @@ module DynamicPagesHelper
       content = random_content(category_id)
     else
       content = Content.only_new.order('RANDOM()').first
+      if check_edge(content.id,current_user.id)
+        content = random_content(category_id)
+      end
     end
-    
     reset_edges
     content
   end
@@ -70,7 +72,7 @@ module DynamicPagesHelper
     end
   end
 
-  def decay_time(category_id, const)
+  def decay(category_id, const)
     category_id = get_category_id(category_id)
     sql = %Q(
             UPDATE edges
@@ -85,7 +87,7 @@ module DynamicPagesHelper
     ucc = 0.244
     avgc = 0.2
     k = 0.044
-    avgc2 = 0.5 #a bit of a midas touch effect. everything a good piece of content touches turns to gold
+    avgc2 = 0.5
     k2 = 0.5
     if session[:edges]
       edge1 = session[:edges][0]
@@ -93,11 +95,10 @@ module DynamicPagesHelper
       edge3 = session[:edges][2]
       content = edge3.content
 
+      decay_const = 0.975
+      decay(category_id,decay_const)
 
-      time_decay_const = 0.99
-      decay_time(category_id,time_decay_const)
-
-      average = content.weight_average(category_id) #is average a stored variable in ruby
+      average = content.weight_average(category_id)
 
       edge1.weight = edge1.weight + ucc
       edge1.save
@@ -127,8 +128,8 @@ module DynamicPagesHelper
       avgc = 0.1
       k = 0.4
 
-      time_decay_const = 0.99
-      decay_time(category_id,time_decay_const)
+      decay_const = 0.975
+      decay(category_id,decay_const)
 
       average = content.weight_average(category_id)
 
