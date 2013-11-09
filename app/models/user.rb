@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
-      if current_user
+      if user_signed_in?
         # guest user is already signed in
         user = current_user
         user.name = auth.extra.raw_info.name
