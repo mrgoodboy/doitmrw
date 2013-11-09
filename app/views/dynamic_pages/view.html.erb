@@ -102,7 +102,7 @@
 	};
 
 	var id = -1;
-	var permalink = "default";
+	var permalink = "";
 	function newContent() {
 		$('#content').html('');
 		$.ajax({ 
@@ -121,17 +121,21 @@
 				$("#uploader").append("<a class='pull-right' href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
 
 				id = response["id"];
-				permalink = response["permalink"];
-
-
-				$(".fb-share-button").ready(function(){
-					$(".fb-share-button").prop("data-href", permalink);
-				});
+				
 
 
 				if (response["type_id"] == 3) {
 					styleText();
 				}
+
+				permalink = response["permalink"];
+
+
+				while (!$(".fb-share-button").prop("data-href")) {
+					$(".fb-share-button").prop("data-href", permalink);
+				}
+
+					
 			}
 		});
 	};
