@@ -48,6 +48,9 @@ body {
 		color: rgba(0, 0, 0, 0.8);
 	}
 	#ticker-field {
+		font-family: "Baskerville", Georgia, "Times New Roman", serif;
+		font-style: italic;
+		font-weight: 500;
 		display: inline-block;
 		width: 330px;
 		padding: 0 1px;
@@ -56,8 +59,6 @@ body {
 		border: 1px solid #ddd;
 		padding: 4px 1px;
 		border-radius: 3px;
-		color: #444;
-		font-weight: normal;
 	}
 }
 
@@ -189,7 +190,7 @@ body {
 		margin-top: -10px;
 		margin-left: -10px;
 	}
-	
+
 	#content {
 		width: 608px;
 		height: 300px;
