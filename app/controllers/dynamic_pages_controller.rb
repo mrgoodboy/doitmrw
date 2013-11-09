@@ -23,6 +23,9 @@ class DynamicPagesController < ApplicationController
       	adjust_edge_weights(params[:like], category_id, edge)
     end
     @next = next_content(category_id)
+
+    
+
     render json: @next
 	end
 

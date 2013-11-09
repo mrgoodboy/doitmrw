@@ -11,6 +11,12 @@ class Content < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :type
+  belongs_to :user
+
+  def uploader
+    user.name
+  end
+
 
   def self.edge_column
     'content_id'
@@ -41,7 +47,7 @@ class Content < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(options.merge({methods: [:permalink, :to_html]}))
+    super(options.merge({methods: [:permalink, :to_html, :uploader]}))
   end
 
 end

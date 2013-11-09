@@ -3,11 +3,12 @@ Doitmrw::Application.routes.draw do
 
 
   root to: 'dynamic_pages#home', as: :new_session
+  resources :users
 
   match '/view/:category(/:content_id)',    to: 'dynamic_pages#view', as: :view
   match '/upload',   to: 'dynamic_pages#upload', as: :upload
   match '/leaderboard', to: 'dynamic_pages#leaderboard', as: :leaderboard
-  match '/next', to: 'dynamic_pages#next', as: :next
+  match '/next/:category', to: 'dynamic_pages#next', as: :next
 
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do

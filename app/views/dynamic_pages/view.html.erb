@@ -21,7 +21,7 @@
 			dataType: "json", 
 			success: function(response) {
 				$("#content").html(response["to_html"]);
-				$("#uploader").html("<a href=''>" + response["user_id"] + "</a>");
+				$("#uploader").html("<a href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
 				id = response["id"];
 				permalink = response["permalink"];
 			}
@@ -37,32 +37,15 @@
 	});
 </script>
 
-<script>
-//border color changes depending on category
-	$(document).ready(function() {
-		if ("<%= params[:category] %>" == "funny" ) {
 
-			$("#content").css("border", "1px solid #fe818d");
-		} else if ("<%= params[:category] %>" == "inspirational" ) {
-			$("#content").css("border", "1px solid #8736ff")
-		} else if ("<%= params[:category] %>" == "cute" ) {
-			$("#content").css("border", "1px solid #bc95fd");
-		} else if ("<%= params[:category] %>" == "weird" ) {
-			$("#content").css("border", "1px solid #ffae82");
-		} else {
-			$("#content").css("border", "1px solid #ff3838");
-		}
-		
-	});
-</script>
 
 <script>
 //set data-href for facebook share button
-/*
+
 $(document).ready(function(){
 	$(".fb-share-button").attr("data-href", permalink);
 });
-*/
+
 </script>
 
 
