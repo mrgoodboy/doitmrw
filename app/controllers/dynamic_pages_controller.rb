@@ -23,29 +23,35 @@ class DynamicPagesController < ApplicationController
 	    render json: @next
 	end
 
-def upload
-	if params[:submit]
-		type = Type.find_by_name(params[:type])
-		category = Category.find_by_slug(params[:category])
+  def upload
+  	if params[:submit]
+  		type = Type.find_by_name(params[:type])
+  		category = Category.find_by_slug(params[:category])
 
-		@content = Content.new(type: type, text: params[:text], title: params[:title], category: category)
-		@submitted = true
+  		@content = Content.new(type: type, text: params[:text], title: params[:title], category: category)
+  		@submitted = true
 
-		if @content.save
-			redirect_to "/"
-			flash["success"] = "You have successfully contributed to the best procrastination community!"
-		else
-			redirect_to upload_path
-			flash["error"] = "Something went wrong, please try to upload your masterpiece again."
-		end
+  		if @content.save
+  			redirect_to "/"
+  			flash["success"] = "You have successfully contributed to the best procrastination community!"
+  		else
+  			redirect_to upload_path
+  			flash["error"] = "Something went wrong, please try to upload your masterpiece again."
+  		end
 
-	else
-		@content = Content.new
-	end
+  	else
+  		@content = Content.new
+  	end
 
-end
+  end
 
-def leaderboard
-end
+  def leaderboard
+  end
+
+  protected
+
+  def connect(user_id, content_id)
+    Edge.create(user_id: user_id, content_id: content_id)
+  end
 
 end
