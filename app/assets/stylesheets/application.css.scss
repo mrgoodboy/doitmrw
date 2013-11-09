@@ -88,6 +88,10 @@ body {
 }
 
 .header {
+	h1 {
+		margin-top: 1.5em;
+		letter-spacing: 1px;
+	};
 	position: relative;
 	margin-bottom: 1em;
 	height: $header-height;

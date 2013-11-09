@@ -13,7 +13,7 @@
 <body>
 	
 	<div class="container">
-		<div class="header">
+		<div class="header row">
 			<div class="owl-message-box">
 				<% flash.each do |key, value| %>
 				<%= content_tag(:p, value, class: "owl-message") %>
@@ -35,10 +35,12 @@
 					<% end -%>
 				</li>
 			</ul>
-			<a href="/">
+			<a href="/" class="col-md-2">
 				<%= image_tag "logo.png" %>
-				
 			</a>
+			<h1>doitmrw</h1>
+
+			
 			
 			
 		</div>
