@@ -115,6 +115,14 @@ body {
 	}
 }
 
+.category-links {
+	text-align: center;
+	margin-top: 3em;
+	h3 {
+		color: #444;
+	}
+}
+
 //homepage - categories
 #categories {
 	.row {		
@@ -165,6 +173,12 @@ body {
 		margin-bottom: 2em;
 		border-radius: 3px;
 
+		img {
+			height: 300px;
+			width: auto;
+			display: block;
+			margin: 0 auto;
+		}
 
 	}
 	.three-button-group {

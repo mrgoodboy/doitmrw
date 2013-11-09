@@ -5,12 +5,15 @@
 <div id="categories">
 
 	<div class="row">
-		<a href="<%= view_path(:funny) %>" class="category-link">funny.</a>
-		<a href="<%= view_path(:cool) %>" class="category-link">cool.</a>
-		<a href="<%= view_path(:cute) %>" class="category-link">cute.</a>
-		<a href="<%= view_path(:weird) %>" class="category-link">weird.</a>
-		
-		<a href="<%= view_path(:random) %>" class="category-link random">random.</a>
+    <div class="category-links">
+      <h3>get started:</h3>
+  		<a href="<%= view_path(:funny) %>" class="category-link btn btn-lg btn-info">funny.</a>
+  		<a href="<%= view_path(:cool) %>" class="category-link btn btn-lg btn-warning">cool.</a>
+  		<a href="<%= view_path(:cute) %>" class="category-link btn btn-lg btn-success">cute.</a>
+  		<a href="<%= view_path(:weird) %>" class="category-link btn btn-lg btn-danger">weird.</a>
+  		<br />
+  		<a href="<%= view_path(:random) %>" class="category-link btn btn-lg random">random.</a>
+    </div>
 	</div>
 </div>
 

@@ -17,7 +17,7 @@
 
 			url: "/next/<%=params[:category]%>",
 			type: "POST",
-			data: (id < 0) ? null : { content_id: id, like: $(this).attr("id") },
+			data: (id < 0) ? null : { content_id: id, like: $(this).attr('data-like') },
 			dataType: "json", 
 			success: function(response) {
 				$("#content").html(response["to_html"]);
@@ -40,19 +40,7 @@
 <script>
 //border color changes depending on category
 	$(document).ready(function() {
-		if ("<%= params[:category] %>" == "funny" ) {
-
-			$("#content").css("border", "1px solid #fe818d");
-		} else if ("<%= params[:category] %>" == "inspirational" ) {
-			$("#content").css("border", "1px solid #8736ff")
-		} else if ("<%= params[:category] %>" == "cute" ) {
-			$("#content").css("border", "1px solid #bc95fd");
-		} else if ("<%= params[:category] %>" == "weird" ) {
-			$("#content").css("border", "1px solid #ffae82");
-		} else {
-			$("#content").css("border", "1px solid #ff3838");
-		}
-		
+		$('#content').addClass('<%= params[:category] %>');
 	});
 </script>
 
@@ -87,7 +75,7 @@ $(document).ready(function(){
 			<div class="row">
 				<div class="col-md-4">
 					
-					<a type="button" class="btn btn-danger btn-lg next" id="downvote">
+					<a type="button" class="btn btn-danger btn-lg next" data-like="0" id="downvote">
 						<span class="glyphicon glyphicon-thumbs-down"></span> Downvote
 					</a>	
 					
@@ -112,7 +100,7 @@ $(document).ready(function(){
 
 				<div class="col-md-4">
 
-					<a type="button" class="btn btn-success btn-lg next" id="upvote">
+					<a type="button" class="btn btn-success btn-lg next" data-like="1" id="upvote">
 						<span class="glyphicon glyphicon-thumbs-up"></span> Upvote
 					</a>
 					
