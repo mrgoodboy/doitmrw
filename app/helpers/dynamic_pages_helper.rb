@@ -18,7 +18,7 @@ module DynamicPagesHelper
     if Content.only_new.count.zero?
       content = random_content(category_id)
     else
-      content = Content.only_new.order('RANDOM()').first #if it receives the 3rd dislike, remove the new tag
+      content = Content.only_new.order('RANDOM()').first
     end
     
     reset_edges
@@ -57,7 +57,9 @@ module DynamicPagesHelper
   end
 
   def random_content(category_id)
-    new_content(category_id)
+    content = Content.order('RANDOM()').first
+    reset_edges
+    content
   end
 
   def adjust_edge_weights(like,category_id,edge4)
