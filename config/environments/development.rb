@@ -38,4 +38,7 @@ Doitmrw::Application.configure do
   config.before_initialize do                                                                                                                                                                                                       
     Doitmrw::Application.routes.default_url_options[:host] = 'localhost:3000'
   end
+
+  ENV['FACEBOOK_APP_ID'] = '486427624802931'
+  ENV['FACEBOOK_APP_SECRET'] = '41fb30d4a9cbd1af9e8ad97fb9bbefea'
 end
