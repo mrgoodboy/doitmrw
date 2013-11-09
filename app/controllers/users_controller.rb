@@ -3,8 +3,13 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id], include: :edges)
-    @edges = @user.edges
-		@uploads = User.find(params[:id]).content
+    @uploads = @user.content
+    sql = %Q(
+            SELECT COUNT(e.id) FROM content c
+              JOIN edges e ON e.content_id = c.id
+                WHERE c.user_id = #{@user.id}
+             )
+		@distractees = User.connection.select_value(sql)
 	end
 
   def create
