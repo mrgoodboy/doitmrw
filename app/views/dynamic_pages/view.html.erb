@@ -131,9 +131,11 @@
 				permalink = response["permalink"];
 
 
-				$("#fbposition").html("<div class='fb-share-button' data-href='" + permalink + "' data-type='button'></div>");
+//				$("#fbposition").html("<div class='fb-share-button' data-href='" + permalink + "' data-type='button'></div>");
 
-				 FB.XFBML.parse($(".fb-share-button"));
+				$("#fbposition").html("<fb:share-button href=" + permalink + "type='box_count'></fb:share-button>')";
+
+				 FB.XFBML.parse($("#fbposition").children());
 
 					
 			}
