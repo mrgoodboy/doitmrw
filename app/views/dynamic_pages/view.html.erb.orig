@@ -15,7 +15,11 @@
 	function newContent() {
 		$.ajax({ 
 
+<<<<<<< HEAD
+			url: "/next",
+=======
 			url: "/next/<%=params[:category]%>",
+>>>>>>> owl
 			type: "POST",
 			data: (id < 0) ? null : { content_id: id, like: $(this).attr('data-like') },
 			dataType: "json", 
@@ -24,7 +28,6 @@
 				$("#uploader").html("<a href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
 				id = response["id"];
 				permalink = response["permalink"];
-				$(".fb-share-button").attr("data-href", permalink);
 			}
 		});
 	};
@@ -41,6 +44,15 @@
 
 
 
+
+<script>
+//set data-href for facebook share button
+
+$(document).ready(function(){
+	$(".fb-share-button").attr("data-href", permalink);
+});
+
+</script>
 
 
 
