@@ -4,6 +4,6 @@ module DynamicPagesHelper
   end
 
   def next_content(category)
-    
+    Content.order("RAND()").first
   end
 end
