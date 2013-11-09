@@ -35,7 +35,10 @@
 
 
 				$("#content").html(response["to_html"]);
-				$("#uploader").html("<a href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
+
+				$("#uploader").html("<span>" + response["title"] + "</span>");
+				$("#uploader").append("<a class='pull-right' href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
+
 				id = response["id"];
 				permalink = response["permalink"];
 
