@@ -83,17 +83,17 @@ module DynamicPagesHelper
   end
 
   def adjust_like(category_id,edge4)
+    ucc = 0.2
+    avgc = 0.1
+    k = 0.1
+    avgc2 = 1 #a bit of a midas touch effect. everything a good piece of content touches turns to gold
+    k2 = 0.5
     if session[:edges]
       edge1 = session[:edges][0]
       edge2 = session[:edges][1]
       edge3 = session[:edges][2]
       content2 = edge3.content
 
-      ucc = 0.2
-      avgc = 0.1
-      k = 0.1
-      avgc2 = 1 #a bit of a midas touch effect. everything a good piece of content touches turns to gold
-      k2 = 0.5
 
       # time = Time.now
 
@@ -101,7 +101,7 @@ module DynamicPagesHelper
       time_decay_const = 0.99
       decay_time(category_id,time_decay_const)
 
-      average = content2.weight_average #is average a stored variable in ruby
+      average = content2.weight_average(category_id) #is average a stored variable in ruby
 
       edge1.weight = edge1.weight + ucc
       edge1.save
@@ -111,13 +111,16 @@ module DynamicPagesHelper
 
       edge3.weight = edge3.weight + avgc*average + k
       edge3.save
-    end
 
-    edge4.weight = avgc2*average + k2
-    edge4.save
+      edge4.weight = avgc2 * average + k2
+      edge4.save
+    else
+      edge4.weight = 1
+      edge4.save
+    end
   end
 
-  def adjust_dislike(edge4)
+  def adjust_dislike(category_id, edge4)
     if session[:edges]
       edge1 = session[:edges][0]
       edge2 = session[:edges][1]
@@ -131,7 +134,7 @@ module DynamicPagesHelper
       time_decay_const = 0.99
       decay_time(category_id,time_decay_const)
 
-      average = content2.weight_average
+      average = content2.weight_average(category_id)
 
       edge1.weight = edge1.weight - ucc
       if edge1.weight < 0

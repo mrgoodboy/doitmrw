@@ -19,11 +19,8 @@ class DynamicPagesController < ApplicationController
     category_id = Category.find_by_name(@category)
     if params[:like]
         # now, session[:edges] should be set
-        connect(current_user.id, params[:content_id])
-        if session[:edges]
-        	adjust_edge_weights(session[:edges], category_id, params[:like])
-        end
-          # else do nothing, we lost the edges
+        edge = connect(current_user.id, params[:content_id])
+      	adjust_edge_weights(params[:like], category_id, edge)
     end
     @next = next_content(category_id)
     render json: @next
@@ -62,7 +59,7 @@ class DynamicPagesController < ApplicationController
   protected
 
   def connect(user_id, content_id)
-    Edge.create(user_id: user_id, content_id: content_id, weight: INITIAL_EDGE_WEIGHT)
+    Edge.create(user_id: user_id, content_id: content_id)
   end
 
 end

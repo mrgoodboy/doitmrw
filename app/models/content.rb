@@ -6,6 +6,9 @@ class Content < ActiveRecord::Base
 
   set_table_name 'content'
 
+  has_many :edges
+  has_many :users, through: :edges
+
   belongs_to :category
   belongs_to :type
 
