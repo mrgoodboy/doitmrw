@@ -57,7 +57,6 @@
 
 				<div class="col-md-4 middle">
 					<div class="row three-button-group" id="fbposition">
-						<div class="fb-share-button" data-href="" data-type="button"></div>
 						
 					</div>
 					<div class="row three-button-group">
@@ -132,10 +131,11 @@
 				permalink = response["permalink"];
 
 
-				$(".fb-share-button").attr("data-href", permalink);
-				if (FB) {
-					FB.XFBML.parse();
-				}
+				$("#fbposition").html("<div class='fb-share-button' data-href='" + permalink + "' data-type='button'></div>");
+
+				 FB.XFBML.parse($(".fb-share-button"));
+
+					
 			}
 		});
 	};
