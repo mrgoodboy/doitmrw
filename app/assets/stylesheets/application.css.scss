@@ -34,6 +34,24 @@ body {
 	}
 }
 
+.ticker-container {
+	font-size: 2em;
+	color: rgba(0, 0, 0, 0.4);
+	line-height: 1.2em;
+	span {
+		font-weight: bold;
+		color: rgba(0, 0, 0, 0.8);
+	}
+	#ticker-field {
+		font-size: 100%;
+		line-height: 1.2em;
+		width: 200px;
+		display: inline;
+		padding: 4px 1px;
+	}
+}
+
+
 
 .owl-message-box {
 	display: none;

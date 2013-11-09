@@ -158,8 +158,10 @@ module DynamicPagesHelper
       #if sum >=3
         #content2.type = old
   end
-
+    
   def reset_edges
     session[:edges] = nil
   end
 end
+
+ 

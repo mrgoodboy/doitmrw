@@ -15,7 +15,7 @@
 	function newContent() {
 		$.ajax({ 
 
-			url: "/next",
+			url: "/next/<%=params[:category]",
 			type: "POST",
 			data: (id < 0) ? null : { content_id: id, like: $(this).attr("id") },
 			dataType: "json", 
