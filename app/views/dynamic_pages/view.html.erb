@@ -8,63 +8,6 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 
-<script type="text/javascript">
-//ajax requesting content
-
-	function styleText() {
-		$("#content").addClass("well");
-		$("#spinner").css("visibility", "hidden");
-	};
-	function unstyleText() {
-		$("#content").removeClass("well");
-		$("#spinner").css("visibility", "visible");
-	};
-
-	var id = -1;
-	var permalink = "default";
-	function newContent() {
-		$('#content').html('');
-		$.ajax({ 
-
-			url: "/next/<%=params[:category]%>",
-			type: "POST",
-			data: (id < 0) ? null : { content_id: id, like: $(this).attr('data-like') },
-			dataType: "json", 
-			success: function(response) {
-				unstyleText();
-
-
-				$("#content").html(response["to_html"]);
-
-				$("#uploader").html("<span>" + response["title"] + "</span>");
-				$("#uploader").append("<a class='pull-right' href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
-
-				id = response["id"];
-				permalink = response["permalink"];
-
-
-				$(".fb-share-button").ready(function(){
-					$(".fb-share-button").prop("data-href", permalink);
-				});
-
-
-				if (response["type_id"] == 3) {
-					styleText();
-				}
-			}
-		});
-	};
-
-	$(document).ready(function() {
-		
-		<% if @content == nil %>
-			newContent();
-		<% end %>
-
-		$(".next").click(newContent);
-	});
-</script>
-
 <script>
 //disables footer buttons
 	$(document).ready(function(){
@@ -144,3 +87,61 @@
 		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+//ajax requesting content
+
+	function styleText() {
+		$("#content").addClass("well");
+		$("#spinner").css("visibility", "hidden");
+	};
+	function unstyleText() {
+		$("#content").removeClass("well");
+		$("#spinner").css("visibility", "visible");
+	};
+
+	var id = -1;
+	var permalink = "default";
+	function newContent() {
+		$('#content').html('');
+		$.ajax({ 
+
+			url: "/next/<%=params[:category]%>",
+			type: "POST",
+			data: (id < 0) ? null : { content_id: id, like: $(this).attr('data-like') },
+			dataType: "json", 
+			success: function(response) {
+				unstyleText();
+
+
+				$("#content").html(response["to_html"]);
+
+				$("#uploader").html("<span>" + response["title"] + "</span>");
+				$("#uploader").append("<a class='pull-right' href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
+
+				id = response["id"];
+				permalink = response["permalink"];
+
+
+				$(".fb-share-button").ready(function(){
+					$(".fb-share-button").prop("data-href", permalink);
+				});
+
+
+				if (response["type_id"] == 3) {
+					styleText();
+				}
+			}
+		});
+	};
+
+	$(document).ready(function() {
+		
+		<% if @content == nil %>
+			newContent();
+		<% end %>
+
+		$(".next").click(newContent);
+	});
+</script>
