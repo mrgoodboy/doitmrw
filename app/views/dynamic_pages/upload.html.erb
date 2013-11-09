@@ -1,0 +1,57 @@
+<div class="row" id="upload-form">
+
+
+	<div class="col-md-10 col-md-offset-1">
+		<h2>Help others waste time!</h2>
+
+		<%= form_tag(upload_path, method: "post") %>
+
+		<div class="row">
+			<div class="col-md-3">
+				<%= label_tag :title %>
+			</div>
+			<div class="col-md-3">
+				<%= text_field_tag :title %>
+			</div>
+		</div>
+
+		<div class="row">	
+			<div class="col-md-3">
+				<%= label_tag :type %>
+			</div>
+			<div class="col-md-3">
+				<%= select_tag(:type, options_for_select([['Image', 'image'], ['Video', 'video'], ['Text', 'text']], 'image')) %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<%= label_tag :category %>
+			</div>
+			<div class="col-md-3">
+				<%= select_tag(:category, options_for_select([['Funny', 'funny'], ['Inspirational', 'inspirational'], ['Cute', 'cute'], ['Weird', 'weird'], ['Random', 'random']], 'random')) %>
+			</div>
+		</div>
+		
+
+		<div class="row">
+			<div class="col-md-3">
+				<%= label_tag(:text, "URL") %>
+			</div>
+			<div class="col-md-3">
+				<%= text_field_tag :text %>
+			</div>
+		</div>
+
+		<div class="row submit">
+			<div class="col-md-3">
+				<%= submit_tag("Contribute", class: "btn btn-lg btn-primary", name: "submit") %>
+			</div>
+		</div>
+
+		
+
+
+
+
+	</div>
+</div>

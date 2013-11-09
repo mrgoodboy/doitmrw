@@ -1,6 +1,6 @@
 class Content < ActiveRecord::Base
   include GraphNode
-  # attr_accessible :title, :body
+  attr_accessible :title, :text, :submit, :category, :type
 
   set_table_name 'content'
 
