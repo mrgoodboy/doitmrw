@@ -15,7 +15,7 @@ var messages = [
 
 function generateMessage (message) {
 	ticker = $('#ticker-field');
-	ticker.val(message);
+	ticker.text(message);
 	ticker.css({color: 'rgba(0, 0, 0, 0)'});
 	ticker.animate({color: 'rgba(0, 0, 0, 1)'}, 1000).delay(2000).animate({color: 'rgba(0, 0, 0, 0)'}, 1000, function() {
 		message2 = message;

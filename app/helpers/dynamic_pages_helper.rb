@@ -151,12 +151,13 @@ module DynamicPagesHelper
 
     edge4.weight = 0
     edge4.save
-    #content2 = edge4.content
-    #if content2.type = new
-      #for edge in content2.edges
-        #sum++
-      #if sum >=3
-        #content2.type = old
+    content2 = edge4.content
+    if content2.new
+      if content2.edges.where(weight: 0).count >= 3
+        content2.new = false
+        content2.save
+      end
+    end
   end
     
   def reset_edges

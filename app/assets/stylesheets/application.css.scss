@@ -43,15 +43,18 @@ body {
 		color: rgba(0, 0, 0, 0.8);
 	}
 	#ticker-field {
-		font-size: 100%;
-		line-height: 1.2em;
-		width: 200px;
-		display: inline;
+		display: inline-block;
+		width: 330px;
+		padding: 0 1px;
+		text-align: right;
+		background: #fff;
+		border: 1px solid #ddd;
 		padding: 4px 1px;
+		border-radius: 3px;
+		color: #444;
+		font-weight: normal;
 	}
 }
-
-
 
 .owl-message-box {
 	display: none;
@@ -79,7 +82,7 @@ body {
 
 .header {
 	position: relative;
-	margin-bottom: 5em;
+	margin-bottom: 1em;
 	height: $header-height;
 	img {
 		height: $header-height - 20px;
