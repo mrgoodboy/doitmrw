@@ -13,6 +13,7 @@
 	var id = -1;
 	var permalink = "default"
 	function newContent() {
+		$('#content').html('');
 		$.ajax({ 
 
 			url: "/next/<%=params[:category]%>",
@@ -59,11 +60,13 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 
-			<div class="row" id="content">
-				 <% if @content  %>
-				 <%= @content.html %>
-				 
-				 <% end %>
+			<div class="row">
+				<div id="spinner"><i class="fa fa-spinner fa-spin"></i></div>
+				<div id="content">
+					<% if @content  %>
+						<%= @content.html %>
+	 				<% end %>
+				</div>
 			</div>
 
 			<div class="row" id="uploader">

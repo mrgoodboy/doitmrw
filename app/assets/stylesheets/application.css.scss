@@ -34,8 +34,13 @@ body {
 	}
 }
 
+.doitmrw-ticker {
+	text-align: center;
+}
+
 .ticker-container {
-	font-size: 2em;
+	display: inline-block;
+	font-size: 1.4em;
 	color: rgba(0, 0, 0, 0.4);
 	line-height: 1.2em;
 	span {
@@ -117,9 +122,16 @@ body {
 
 .category-links {
 	text-align: center;
-	margin-top: 3em;
+	margin-top: 5em;
+	.btn {
+		font-size: 2em;
+		padding: 1em 1.4em;
+	}
 	h3 {
+		font-size: 2em;
 		color: #444;
+		margin-bottom: 1em;
+		font-weight: normal;
 	}
 }
 
@@ -168,15 +180,33 @@ body {
 
 #content-container {
 
+	#spinner {
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		top: 50%;
+		left: 50%;
+		margin-top: -10px;
+		margin-left: -10px;
+	}
+	
 	#content {
+		width: 608px;
 		height: 300px;
 		margin-bottom: 2em;
 		border-radius: 3px;
+		text-align: center;
+		position: relative;
+
 
 		img {
 			height: 300px;
 			width: auto;
 			display: block;
+			margin: 0 auto;
+		}
+
+		iframe {
 			margin: 0 auto;
 		}
 
@@ -199,7 +229,7 @@ body {
 	}
 
 	#uploader {
-		margin-top: -1.5em;
+		margin-top: -1em;
 		margin-bottom: 2em;
 	}
 
