@@ -38,7 +38,7 @@
 				$("#uploader").html("<a href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
 				id = response["id"];
 				permalink = response["permalink"];
-				
+
 				$(".fb-share-button").attr("data-href", permalink);
 
 				if (response["type_id"] == 3) {
@@ -58,6 +58,24 @@
 		$(".next").click(newContent);
 	});
 </script>
+
+<script>
+//disables footer buttons
+	$(document).ready(function(){
+		if (window.location.pathname.indexOf("funny") !== -1) {
+			
+			$("#s-funny-button").addClass("selected");
+		} else if (window.location.pathname.indexOf("cool") !== -1) {
+			$("#s-cool-button").addClass("selected");
+		} if (window.location.pathname.indexOf("cute") !== -1) {
+			$("#s-cute-button").addClass("selected");
+		} if (window.location.pathname.indexOf("weird") !== -1) {
+			$("#s-weird-button").addClass("selected");
+		}
+	});
+</script>
+
+
 
 
 <div id="content-container">

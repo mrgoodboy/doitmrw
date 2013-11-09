@@ -46,7 +46,8 @@
 				<%= label_tag :category %>
 			</div>
 			<div class="col-md-3">
-				<%= select_tag(:category, options_for_select([['Funny', 'funny'], ['Cool', 'cool'], ['Cute', 'cute'], ['Weird', 'weird'], ['Random', 'random']], 'random')) %>
+			<!-- removed random for now -->
+				<%= select_tag(:category, options_for_select([['Funny', 'funny'], ['Cool', 'cool'], ['Cute', 'cute'], ['Weird', 'weird']])) %>
 			</div>
 		</div>
 		
