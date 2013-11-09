@@ -4,7 +4,21 @@ class DynamicPagesController < ApplicationController
 
 	def view
 		@category = params[:category]
+
 	end
+
+  def next
+    @category = params[:category]
+    if params[:like]
+      # now, session[:edges] should be set
+      if session[:edges]
+        adjust_edge_weights(session[:edges], params[:like])
+      end
+        # else do nothing, we lost the edges
+    end
+    @next = next_random_content(@category)
+    render json: @next
+  end
 
 	def upload
     if params[:submit]
