@@ -23,7 +23,7 @@ class DynamicPagesController < ApplicationController
     category_id = Category.find_by_slug(@category).id
     if params[:like]
         # now, session[:edges] should be set
-        edge = connect(current_user.id, params[:content_id])
+        edge = connect(current_user.id, params[:content_id], category_id)
       	adjust_edge_weights(params[:like], category_id, edge)
     end
     @next = next_content(category_id)
@@ -97,8 +97,8 @@ class DynamicPagesController < ApplicationController
     end
   end
 
-  def connect(user_id, content_id)
-    Edge.create(user_id: user_id, content_id: content_id)
+  def connect(user_id, content_id, category_id)
+    Edge.create(user_id: user_id, content_id: content_id, category_id: category_id)
   end
 
   def uri?(string)
