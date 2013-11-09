@@ -75,7 +75,7 @@ body {
 	}
 }
 
-//body
+//homepage - categories
 #categories {
 	.row {		
 		position: relative;	
@@ -101,6 +101,46 @@ body {
 			margin-left: $second-margin;
 		}
 	}	
+
+}
+
+//upload form
+#upload-form {
+	h2 {
+		margin-bottom: 1em;
+	}
+
+	.submit {
+		margin-top: 3em;
+	}
+
+}
+
+//view content
+
+#content-container {
+
+	#content {
+		height: 300px;
+
+
+	}
+	.three-button-group {
+		margin: 0.5em;
+	}
+	#report-link {
+			margin-top: -0.5em;
+	}
+
+	.middle {
+		text-align: center;
+		
+	}
+
+	.btn-lg {
+		width: 9em;
+	}
+
 
 }
 

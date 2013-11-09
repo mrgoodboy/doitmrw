@@ -1,5 +1,5 @@
 class Content < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :title, :text, :submit, :category, :type
 
   set_table_name 'content'
 

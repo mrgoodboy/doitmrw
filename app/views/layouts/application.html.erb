@@ -10,6 +10,7 @@
 </head>
 <body>
 	<div class="container">
+
 		<div class="header">
 			<ul class="nav nav-pills pull-right">
 				<% if user_signed_in? -%>
@@ -19,10 +20,23 @@
 					<li><%= link_to "<i class=\"icon-facebook\"></i> Log In".html_safe, user_omniauth_authorize_path(:facebook) %></li>
 					<li><%= link_to "<i class=\"icon-facebook\"></i> Sign Up".html_safe, user_omniauth_authorize_path(:facebook) %></li>
 				<% end -%>
-				<li><%= link_to "Upload".html_safe, user_omniauth_authorize_path(:facebook), id: "upload-button" %></li>
+				<li>
+				<% if user_signed_in? -%>
+				<%= link_to "Upload", upload_path, id: "upload-button" %>
+				<% else -%>
+				<%= link_to "Upload", user_omniauth_authorize_path(:facebook), id: "upload-button" %>
+				<% end -%>
+				</li>
 			</ul>
+			<a href="/">
 			<%= image_tag "logo.png" %>
+			</a>
 		</div>
+
+		
+		<% flash.each do |key, value| %>
+	    <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+	    <% end %>
 
 
 		<%= yield %>
