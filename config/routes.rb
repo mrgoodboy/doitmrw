@@ -2,13 +2,13 @@ Doitmrw::Application.routes.draw do
 
 
 
-  root to: 'dynamic_pages#home'
+  root to: 'dynamic_pages#home', as: :new_session
 
   match '/view/:category',    to: 'dynamic_pages#view'
   match '/upload',   to: 'dynamic_pages#view'
   match '/leaderboard', to: 'dynamic_pages#leaderboard'
 
-
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
 
   # The priority is based upon order of creation:

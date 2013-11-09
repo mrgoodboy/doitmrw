@@ -12,8 +12,8 @@
 	<div class="container">
 		<div class="header">
 			<ul class="nav nav-pills pull-right">
-				<li><a href="">Log In</a></li>
-				<li><a href="#">Sign Up</a></li>
+				<li><%= link_to "<i class=\"icon-facebook\"></i> Log In".html_safe, user_omniauth_authorize_path(:facebook) %></li>
+				<li><%= link_to "<i class=\"icon-facebook\"></i> Sign Up".html_safe, user_omniauth_authorize_path(:facebook) %></li>
 				<li><a href="#" id="upload-button">Upload</a></li>
 			</ul>
 			<%= image_tag "logo.png" %>
