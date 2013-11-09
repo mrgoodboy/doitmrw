@@ -4,6 +4,6 @@ module DynamicPagesHelper
   end
 
   def next_content(category)
-
+    
   end
 end

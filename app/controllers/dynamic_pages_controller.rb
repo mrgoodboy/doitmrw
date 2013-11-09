@@ -4,13 +4,14 @@ class DynamicPagesController < ApplicationController
 
 	def view
 		@category = params[:category]
-
 	end
 
   def next
+    # called via ajax
     @category = params[:category]
     if params[:like]
       # now, session[:edges] should be set
+      connect(current_user.id, params[:content_id])
       if session[:edges]
         adjust_edge_weights(session[:edges], params[:like])
       end
