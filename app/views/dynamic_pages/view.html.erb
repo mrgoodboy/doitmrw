@@ -1,6 +1,13 @@
-
-
 <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=486427624802931";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 <script type="text/javascript">
 //ajax requesting content
 	var id = -1;
@@ -13,14 +20,15 @@
 			data: (id < 0) ? null : { content_id: id, like: $(this).attr("id") },
 			dataType: "json", 
 			success: function(response) {
-				$("#content").html(response["title"]);
+				$("#content").html(response["html"]);
+				$("#uploader").html("<a href=''>" + response["user_id"] + "</a>");
 				id = response["id"];
 				permalink = response["permalink"];
 			}
 		});
 	};
 	$(document).ready(function() {
-		alert("shit");
+		
 		<% if @content == nil %>
 			newContent();
 		<% end %>
@@ -50,11 +58,12 @@
 
 <script>
 //set data-href for facebook share button
-
+/*
 $(document).ready(function(){
 	$(".fb-share-button").attr("data-href", permalink);
 });
-</script
+*/
+</script>
 
 
 
@@ -72,6 +81,9 @@ $(document).ready(function(){
 				 <% end %>
 			</div>
 
+			<div class="row" id="uploader">
+			</div>
+
 			<div class="row">
 				<div class="col-md-4">
 					
@@ -83,7 +95,7 @@ $(document).ready(function(){
 
 				<div class="col-md-4 middle">
 					<div class="row three-button-group">
-						<div class="fb-share-button" data-href="" data-type="button"></div>
+						<div class="fb-share-button" data-href="http://facebook.com" data-type="button"></div>
 					</div>
 					<div class="row three-button-group">
 						<button type="button" class="btn btn-default btn-sm">
