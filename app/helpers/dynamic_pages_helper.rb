@@ -63,7 +63,7 @@ module DynamicPagesHelper
   end
 
   def adjust_edge_weights(like,category_id,edge4)
-    if like
+    if like == '1'
       adjust_like(category_id,edge4)
     else
       adjust_dislike(category_id,edge4)
