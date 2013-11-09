@@ -7,7 +7,7 @@ module DynamicPagesHelper
 
   def next_content(category_id) #returns content of the next page
     #Content.order("RAND()").first
-    if rand < 0.8
+    if rand < 0.33
       new_content(category_id)
     else
       old_content(category_id)
@@ -156,7 +156,7 @@ module DynamicPagesHelper
     edge4.save
     content2 = edge4.content
     if content2.new
-      if content2.edges.where(weight: 0).count >= 1
+      if content2.edges.where(weight: 0).count >= 2
         content2.new = false
         content2.save
       end
