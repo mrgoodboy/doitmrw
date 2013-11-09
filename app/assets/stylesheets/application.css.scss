@@ -24,6 +24,12 @@
 
 body {
 	background: $background;
+	a {
+		color: $link-color;
+		&:hover {
+			color: $link-color;
+		}
+	}
 }
 
 //header
@@ -73,7 +79,7 @@ body {
 			margin-right: $second-margin;
 			width: $category-button-width;
 
-			
+
 		}
 
 		#random-button {
@@ -110,6 +116,8 @@ body {
 
 	#content {
 		height: 300px;
+		margin-bottom: 2em;
+		border-radius: 3px;
 
 
 	}
@@ -126,7 +134,7 @@ body {
 	}
 
 	.btn-lg {
-		width: 9em;
+		width: 9.7em;
 	}
 
 
