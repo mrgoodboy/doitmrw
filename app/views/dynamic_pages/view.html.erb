@@ -102,7 +102,7 @@
 	};
 
 	var id = -1;
-	var permalink = "default";
+	var permalink = "http://facebook.com";
 	function newContent() {
 		$('#content').html('');
 		$.ajax({ 
@@ -123,11 +123,11 @@
 				id = response["id"];
 				permalink = response["permalink"];
 
-
+/*
 				$(".fb-share-button").ready(function(){
 					$(".fb-share-button").prop("data-href", permalink);
 				});
-
+*/
 
 				if (response["type_id"] == 3) {
 					styleText();
