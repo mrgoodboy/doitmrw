@@ -16,7 +16,7 @@ class DynamicPagesController < ApplicationController
 	def next
     # called via ajax
     @category = params[:category]
-    category_id = Category.find_by_name(@category)
+    category_id = Category.find_by_name(@category).id
     if params[:like]
         # now, session[:edges] should be set
         edge = connect(current_user.id, params[:content_id])

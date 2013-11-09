@@ -83,10 +83,10 @@ module DynamicPagesHelper
   end
 
   def adjust_like(category_id,edge4)
-    ucc = 0.2
-    avgc = 0.1
-    k = 0.1
-    avgc2 = 1 #a bit of a midas touch effect. everything a good piece of content touches turns to gold
+    ucc = 0.244
+    avgc = 0.2
+    k = 0.044
+    avgc2 = 0.5 #a bit of a midas touch effect. everything a good piece of content touches turns to gold
     k2 = 0.5
     if session[:edges]
       edge1 = session[:edges][0]
