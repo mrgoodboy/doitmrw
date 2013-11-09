@@ -56,7 +56,7 @@ class DynamicPagesController < ApplicationController
         end
         url = URI.parse(params[:text])
         unless (url.host =~ /^([a-z]+.)?youtube.com$/ &&
-                url.query =~ /v=[a-zA-Z0-9]+$/)
+                url.query =~ /v=[a-zA-Z0-9]+/)
           flash["error"] = "It looks like that wasn't a valid youtube URL."
           redirect_to upload_path and return
         end
