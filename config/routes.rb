@@ -2,13 +2,15 @@ Doitmrw::Application.routes.draw do
 
 
 
-  root to: 'dynamic_pages#home'
+  root to: 'dynamic_pages#home', as: :new_session
 
   match '/view/:category',    to: 'dynamic_pages#view', as: :view
   match '/upload',   to: 'dynamic_pages#view', as: :upload
   match '/leaderboard', to: 'dynamic_pages#leaderboard', as: :leaderboard
 
-
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
+    match '/members/sign_out' => 'devise/sessions#destroy', as: :destroy_user_session
+  end
 
 
   # The priority is based upon order of creation:
