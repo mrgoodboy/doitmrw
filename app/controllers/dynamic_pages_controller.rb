@@ -14,18 +14,19 @@ class DynamicPagesController < ApplicationController
 	end
 
 	def next
-	    # called via ajax
-	    @category = params[:category]
-	    if params[:like]
-		      # now, session[:edges] should be set
-		      connect(current_user.id, params[:content_id])
-		      if session[:edges]
-		      	adjust_edge_weights(session[:edges], params[:like])
-		      end
-		        # else do nothing, we lost the edges
-	    end
-	    @next = next_content(@category)
-	    render json: @next
+    # called via ajax
+    @category = params[:category]
+    category_id = Category.find_by_name(@category)
+    if params[:like]
+        # now, session[:edges] should be set
+        connect(current_user.id, params[:content_id])
+        if session[:edges]
+        	adjust_edge_weights(session[:edges], category_id, params[:like])
+        end
+          # else do nothing, we lost the edges
+    end
+    @next = next_content(category_id)
+    render json: @next
 	end
 
   def upload
@@ -33,7 +34,12 @@ class DynamicPagesController < ApplicationController
   		type = Type.find_by_name(params[:type])
   		category = Category.find_by_slug(params[:category])
 
-  		@content = Content.new(type_id: type.id, text: params[:text], title: params[:title], category_id: category.id, user_id: current_user.id)
+  		@content = Content.new(type_id: type.id,
+                             text: params[:text],
+                             title: params[:title],
+                             category_id: category.id,
+                             user_id: current_user.id,
+                             new: true)
   		@submitted = true
 
   		if @content.save

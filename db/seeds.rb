@@ -9,6 +9,6 @@
 Type.create([{ name: 'image' }, { name: 'video' }, { name: 'text' }])
 
 Category.create([{ name: 'funny', slug: 'funny' },
-                 { name: 'inspirational', slug: 'inspirational' },
+                 { name: 'cool', slug: 'cool' },
                  { name: 'cute', slug: 'cute' },
                  { name: 'weird', slug: 'weird' }])

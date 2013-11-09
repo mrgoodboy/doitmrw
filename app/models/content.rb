@@ -2,7 +2,7 @@ class Content < ActiveRecord::Base
   include GraphNode
   include Rails.application.routes.url_helpers
 
-  attr_accessible :title, :text, :submit, :category_id, :type_id, :user_id
+  attr_accessible :title, :text, :submit, :category_id, :type_id, :user_id, :new
 
   set_table_name 'content'
 
@@ -11,6 +11,10 @@ class Content < ActiveRecord::Base
 
   def self.edge_column
     'content_id'
+  end
+
+  def self.only_new
+    where(new: true)
   end
 
   def likes

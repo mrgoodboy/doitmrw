@@ -20,7 +20,7 @@
 			data: (id < 0) ? null : { content_id: id, like: $(this).attr("id") },
 			dataType: "json", 
 			success: function(response) {
-				$("#content").html(response["title"]);
+				$("#content").html(response["to_html"]);
 				id = response["id"];
 			}
 
@@ -28,7 +28,6 @@
 	};
 
 	$(document).ready(function() {
-		alert("Hello");
 		newContent();
 		$(".next").click(newContent);
 	});
