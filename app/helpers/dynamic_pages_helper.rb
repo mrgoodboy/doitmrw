@@ -7,7 +7,7 @@ module DynamicPagesHelper
 
   def next_content(category_id) #returns content of the next page
     #Content.order("RAND()").first
-    if rand < 0.4
+    if rand < 0.8
       new_content(category_id)
     else
       old_content(category_id)
