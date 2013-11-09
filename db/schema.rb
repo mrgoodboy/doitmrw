@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131109002140) do
+ActiveRecord::Schema.define(:version => 20131109025056) do
 
   create_table "categories", :force => true do |t|
     t.string "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20131109002140) do
     t.integer "user_id"
     t.integer "content_id"
     t.float   "weight"
+    t.integer "category_id"
   end
 
   create_table "types", :force => true do |t|
