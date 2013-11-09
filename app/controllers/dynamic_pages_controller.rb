@@ -8,6 +8,9 @@ class DynamicPagesController < ApplicationController
 
 	def view
 		@category = params[:category]
+    if (params[:content_id])
+      @content = Content.find_by_id(params[:content_id])
+    end
 	end
 
 	def next
@@ -30,7 +33,7 @@ class DynamicPagesController < ApplicationController
   		type = Type.find_by_name(params[:type])
   		category = Category.find_by_slug(params[:category])
 
-  		@content = Content.new(type: type, text: params[:text], title: params[:title], category: category)
+  		@content = Content.new(type_id: type.id, text: params[:text], title: params[:title], category_id: category.id)
   		@submitted = true
 
   		if @content.save
