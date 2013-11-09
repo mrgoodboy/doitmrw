@@ -12,9 +12,14 @@
 	<div class="container">
 		<div class="header">
 			<ul class="nav nav-pills pull-right">
-				<li><%= link_to "<i class=\"icon-facebook\"></i> Log In".html_safe, user_omniauth_authorize_path(:facebook) %></li>
-				<li><%= link_to "<i class=\"icon-facebook\"></i> Sign Up".html_safe, user_omniauth_authorize_path(:facebook) %></li>
-				<li><a href="#" id="upload-button">Upload</a></li>
+				<% if user_signed_in? -%>
+					<li><a href="#"><%= current_user.name %></a></li>
+					<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+					<li><a href="#" id="upload-button">Upload</a></li>
+				<% else -%>
+					<li><%= link_to "<i class=\"icon-facebook\"></i> Log In".html_safe, user_omniauth_authorize_path(:facebook) %></li>
+					<li><%= link_to "<i class=\"icon-facebook\"></i> Sign Up".html_safe, user_omniauth_authorize_path(:facebook) %></li>
+				<% end -%>
 			</ul>
 			<%= image_tag "logo.png" %>
 		</div>

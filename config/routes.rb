@@ -8,7 +8,9 @@ Doitmrw::Application.routes.draw do
   match '/upload',   to: 'dynamic_pages#view'
   match '/leaderboard', to: 'dynamic_pages#leaderboard'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
+    match '/members/sign_out' => 'devise/sessions#destroy', as: :destroy_user_session
+  end
 
 
   # The priority is based upon order of creation:
