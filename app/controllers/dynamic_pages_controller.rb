@@ -11,6 +11,7 @@ class DynamicPagesController < ApplicationController
 
 	def view
 		@category = params[:category]
+    reset_edges
     if (params[:content_id])
       @content = Content.find_by_id(params[:content_id])
     end

@@ -47,8 +47,26 @@
 
 
 		
-		<div class="footer">
-			<p>&copy; doitmrw.com</p>
+		<div class="footer row">
+			<div class="col-md-4">
+				<p>&copy; doitmrw.com</p>
+			</div>
+
+			<% unless url_for(params) == "/"%>
+			
+			<div class="col-md-6">
+				
+				<div class="btn-group">
+					<a id="s-funny-button" href="/view/funny" class="btn btn-info">funny</a>
+					<a id="s-cool-button" href="/view/cool" class="btn btn-warning">cool</a>
+					<a id="s-cute-button" href="/view/cute" class="btn btn-success">cute</a>
+					<a id="s-weird-button" href="/view/weird" class="btn btn-danger">weird</a>
+				</div>
+				
+				
+			</div>
+
+			<% end %>
 		</div>
 
 	</div>
