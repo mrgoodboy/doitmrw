@@ -7,7 +7,7 @@ var messages = [
 
 "go to class",
 "go buy food",
-"go for a run"
+"go for a run",
 "what does the owl say",
 "write my English paper",
 "do work",
