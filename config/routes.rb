@@ -4,9 +4,9 @@ Doitmrw::Application.routes.draw do
 
   root to: 'dynamic_pages#home'
 
-  match '/view/:category',    to: 'dynamic_pages#view'
-  match '/upload',   to: 'dynamic_pages#view'
-  match '/leaderboard', to: 'dynamic_pages#leaderboard'
+  match '/view/:category',    to: 'dynamic_pages#view', as: :view
+  match '/upload',   to: 'dynamic_pages#view', as: :upload
+  match '/leaderboard', to: 'dynamic_pages#leaderboard', as: :leaderboard
 
 
 

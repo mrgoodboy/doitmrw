@@ -3,7 +3,7 @@ class DynamicPagesController < ApplicationController
 	end
 
 	def view
-
+		@category = params[:category]
 	end
 
 	def upload

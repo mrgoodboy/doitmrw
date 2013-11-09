@@ -1,21 +1,27 @@
 <div id="categories">
 
 	<div class="row">
-		<div class="col-md-4 col-md-offset-1">
-			<%= image_tag "funny-button.png" %>
-		</div>
-		<div class="col-md-4 col-md-offset-1">
-			<%= image_tag "inspirational-button.png" %>
-		</div>
+		<a href="<%= view_path(:funny) %>">
+			<%= image_tag "funny-button.png" , class: "first-category" %>
+		</a>
+
+		<a href="<%= view_path(:random) %>">
+			<%= image_tag "randombutton.png", id: "random-button" %>
+		</a>
+
+		<a href="<%= view_path(:inspirational) %>">
+			<%= image_tag "inspirational-button.png", class: "second-category" %>
+		</a>
 	</div>
 
+
 	<div class="row">
-		<div class="col-md-4 col-md-offset-1">
-			<%= image_tag "cute-button.png" %>
-		</div>
-		<div class="col-md-4 col-md-offset-1">
-			<%= image_tag "weird-button.png" %>
-		</div>
+		<a href="<%= view_path(:cute) %>">
+			<%= image_tag "cute-button.png", class: "first-category" %>
+		</a>
+		<a href="<%= view_path(:weird) %>">
+			<%= image_tag "weird-button.png", class: "second-category"  %>
+		</a>
 	</div>
 </div>
 

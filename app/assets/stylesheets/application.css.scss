@@ -12,8 +12,6 @@
 *= require_tree .
 */
 
-// import original bootstrap
-@import "twitter/bootstrap";
 
 //variables
 $link-color: #8E5687;
@@ -21,27 +19,38 @@ $link-background: #F3ECF3;
 $header-height: 120px;
 $background: #fffef4;
 
+$second-margin: 8%;
+$first-margin: 8%;
+$category-button-width: (100% - 2 * $first-margin - 2 * $second-margin) / 2 ;
+
+
+
+
+
+// import original bootstrap
+@import "twitter/bootstrap";
+@import "bootstrap-narrow";
+
+
+//background
+
 body {
 	background: $background;
 }
 
-
 //header
-
 #upload-button {
 	color: #FFFFFF;
-	background-color: #8E5687;
-
+	background-color: $link-color;
 }
 
 
 .header {
-	margin-top: 1em;
+	
 	margin-bottom: 5em;
 	height: $header-height;
-	
 	img {
-		height: $header-height;
+		height: $header-height - 20px;
 	}
 
 	.nav {
@@ -67,15 +76,33 @@ body {
 }
 
 //body
-
 #categories {
-	.row {
-		margin-bottom: 60px;
+	.row {		
+		position: relative;	
+		margin-bottom: $second-margin * 2;
+		.first-category {
+			margin-left: $first-margin;
+			margin-right: $second-margin;
+			width: $category-button-width;
 
-		img {
-			width: 100%
+			
+		}
+
+		#random-button {
+			width: 28%;
+			position: absolute;
+			margin-left: -14.5%; 
+			margin-top: 16%;
+			
+			
+		}
+		.second-category {
+			width: $category-button-width;
+			margin-left: $second-margin;
 		}
 	}	
 
 }
+
+
 
