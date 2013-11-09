@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Type.create([{ name: 'image' }, { name: 'video' }, { name: 'text' }])
+
+Category.create([{ name: 'funny', slug: 'funny' },
+                 { name: 'inspirational', slug: 'inspirational' },
+                 { name: 'cute', slug: 'cute' },
+                 { name: 'weird', slug: 'weird' }])
