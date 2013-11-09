@@ -23,26 +23,57 @@
 //background
 
 body {
+
 	background: $background;
+	
+	a {
+		color: $link-color;
+		&:hover {
+			color: $link-color;
+		}
+	}
 }
 
-//header
-#upload-button {
-	color: #FFFFFF;
-	background-color: $link-color;
+
+.owl-message-box {
+	display: none;
+	line-height: $line-height-base * 1.2;
+	position: absolute;
+	width: 30%;
+	margin-left: -35%;
+	color: $link-color;
+	text-align: center;
+	background-color: $background;
+	border: 6px solid $link-color;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	-webkit-box-shadow: 2px 2px 4px #888;
+	-moz-box-shadow: 2px 2px 4px #888;
+	box-shadow: 2px 2px 4px #888;
 }
 
+.owl-message {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	height: 100%;
+}
 
 .header {
-	
+	position: relative;
 	margin-bottom: 5em;
 	height: $header-height;
 	img {
 		height: $header-height - 20px;
 	}
 
-	.nav {
 
+	.nav {
+		//header
+		#upload-button {
+			color: #FFFFFF;
+			background-color: $link-color;
+		}
 		li {
 			a {
 				margin-top: $header-height / 2 - $font-size-base * $line-height-base;
@@ -56,7 +87,7 @@ body {
 					}
 				}
 			}
-			
+
 		}
 
 
@@ -73,7 +104,7 @@ body {
 			margin-right: $second-margin;
 			width: $category-button-width;
 
-			
+
 		}
 
 		#random-button {
@@ -81,8 +112,8 @@ body {
 			position: absolute;
 			margin-left: -14.5%; 
 			margin-top: 16%;
-			
-			
+
+
 		}
 		.second-category {
 			width: $category-button-width;
@@ -110,24 +141,35 @@ body {
 
 	#content {
 		height: 300px;
+		margin-bottom: 2em;
+		border-radius: 3px;
 
 
 	}
 	.three-button-group {
 		margin: 0.5em;
+
 	}
 	#report-link {
-			margin-top: -0.5em;
+		margin-top: -0.5em;
 	}
 
 	.middle {
 		text-align: center;
-		
+
 	}
 
 	.btn-lg {
-		width: 9em;
+		width: 9.7em;
 	}
+
+	#uploader {
+		margin-top: -1.5em;
+		margin-bottom: 2em;
+	}
+
+
+
 
 
 }

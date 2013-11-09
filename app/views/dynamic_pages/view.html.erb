@@ -1,38 +1,69 @@
-<%= @category %>
-
-
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=486427624802931";
-	fjs.parentNode.insertBefore(js, fjs);
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=486427624802931";
+  fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<script type="text/javascript">
-	var id = -1;
 
+<script type="text/javascript">
+//ajax requesting content
+	var id = -1;
+	var permalink = "default"
 	function newContent() {
 		$.ajax({ 
+
 			url: "/next",
 			type: "POST",
 			data: (id < 0) ? null : { content_id: id, like: $(this).attr("id") },
 			dataType: "json", 
 			success: function(response) {
 				$("#content").html(response["to_html"]);
+				$("#uploader").html("<a href=''>" + response["user_id"] + "</a>");
 				id = response["id"];
+				permalink = response["permalink"];
 			}
-
 		});
 	};
-
 	$(document).ready(function() {
-		newContent();
+		
+		<% if @content == nil %>
+			newContent();
+		<% end %>
+
 		$(".next").click(newContent);
 	});
 </script>
 
+<script>
+//border color changes depending on category
+	$(document).ready(function() {
+		if ("<%= params[:category] %>" == "funny" ) {
+
+			$("#content").css("border", "1px solid #fe818d");
+		} else if ("<%= params[:category] %>" == "inspirational" ) {
+			$("#content").css("border", "1px solid #8736ff")
+		} else if ("<%= params[:category] %>" == "cute" ) {
+			$("#content").css("border", "1px solid #bc95fd");
+		} else if ("<%= params[:category] %>" == "weird" ) {
+			$("#content").css("border", "1px solid #ffae82");
+		} else {
+			$("#content").css("border", "1px solid #ff3838");
+		}
+		
+	});
+</script>
+
+<script>
+//set data-href for facebook share button
+/*
+$(document).ready(function(){
+	$(".fb-share-button").attr("data-href", permalink);
+});
+*/
+</script>
 
 
 
@@ -42,7 +73,15 @@
 <div id="content-container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
+
 			<div class="row" id="content">
+				 <% if @content  %>
+				 <%= @content.html %>
+				 
+				 <% end %>
+			</div>
+
+			<div class="row" id="uploader">
 			</div>
 
 			<div class="row">
@@ -56,7 +95,7 @@
 
 				<div class="col-md-4 middle">
 					<div class="row three-button-group">
-						<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-type="button"></div>
+						<div class="fb-share-button" data-href="http://facebook.com" data-type="button"></div>
 					</div>
 					<div class="row three-button-group">
 						<button type="button" class="btn btn-default btn-sm">
@@ -64,7 +103,7 @@
 						</button>
 					</div>
 					<div class="row three-button-group" id="report-link">
-						<a href=""> Report
+						<a href="#"> Report
 						</a>
 					</div>
 					

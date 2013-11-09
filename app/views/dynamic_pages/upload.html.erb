@@ -1,3 +1,21 @@
+<script>
+
+	$(document).ready(function() {
+		
+		$("#type").change(function(){
+			
+			if ($("#type").val() == "text") {
+
+				$("#textinput").html("<textarea cols='50' id='text' name='text' rows='10'></textarea>");
+			} else {
+				$("#textinput").html("<input id='text' name='text' type='text' />");
+			}
+		});
+	});
+
+</script>
+
+
 <div class="row" id="upload-form">
 
 
@@ -37,13 +55,13 @@
 			<div class="col-md-3">
 				<%= label_tag(:text, "URL") %>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-3" id="textinput">
 				<%= text_field_tag :text %>
 			</div>
 		</div>
 
 		<div class="row submit">
-			<div class="col-md-3">
+			<div class="col-md-3 col-md-offset-4">
 				<%= submit_tag("Contribute", class: "btn btn-lg btn-primary", name: "submit") %>
 			</div>
 		</div>
