@@ -2,7 +2,9 @@ Doitmrw::Application.routes.draw do
 
 
 
-  root to: 'dynamic_pages#home', as: :new_session
+  root to: 'dynamic_pages#home', as: :root
+  match '/users/create', to: 'users#create', as: :create_user
+  
   resources :users
 
   match '/view/:category(/:content_id)',    to: 'dynamic_pages#view', as: :view
@@ -12,7 +14,7 @@ Doitmrw::Application.routes.draw do
 
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
-    match '/members/sign_out' => 'devise/sessions#destroy', as: :destroy_user_session
+    match '/users/sign_out' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
 
