@@ -13,10 +13,13 @@
 	var id = -1;
 	var permalink = "default"
 	function newContent() {
-		$('#content').html('');
 		$.ajax({ 
 
+<<<<<<< HEAD
+			url: "/next",
+=======
 			url: "/next/<%=params[:category]%>",
+>>>>>>> owl
 			type: "POST",
 			data: (id < 0) ? null : { content_id: id, like: $(this).attr('data-like') },
 			dataType: "json", 
@@ -25,7 +28,6 @@
 				$("#uploader").html("<a href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
 				id = response["id"];
 				permalink = response["permalink"];
-				$(".fb-share-button").attr("data-href", permalink);
 			}
 		});
 	};
@@ -43,6 +45,15 @@
 
 
 
+<script>
+//set data-href for facebook share button
+
+$(document).ready(function(){
+	$(".fb-share-button").attr("data-href", permalink);
+});
+
+</script>
+
 
 
 
@@ -52,13 +63,11 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 
-			<div class="row">
-				<div id="spinner"><i class="fa fa-spinner fa-spin"></i></div>
-				<div id="content">
-					<% if @content  %>
-						<%= @content.html %>
-	 				<% end %>
-				</div>
+			<div class="row" id="content">
+				 <% if @content  %>
+				 <%= @content.html %>
+				 
+				 <% end %>
 			</div>
 
 			<div class="row" id="uploader">
