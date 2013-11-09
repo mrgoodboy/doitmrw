@@ -3,7 +3,7 @@
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=486427624802931";
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=376094965858032";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -56,8 +56,8 @@
 				</div>
 
 				<div class="col-md-4 middle">
-					<div class="row three-button-group">
-						<div class="fb-share-button" data-href="" data-type="button"></div>
+					<div class="row three-button-group" id="fbposition">
+						
 					</div>
 					<div class="row three-button-group">
 						<button type="button" class="btn btn-default btn-sm">
@@ -131,9 +131,7 @@
 				permalink = response["permalink"];
 
 
-				while (!$(".fb-share-button").prop("data-href")) {
-					$(".fb-share-button").prop("data-href", permalink);
-				}
+				$("#fbposition").html("<div class='fb-share-button' data-href='" + permalink + "' data-type='button'></div>");
 
 					
 			}
