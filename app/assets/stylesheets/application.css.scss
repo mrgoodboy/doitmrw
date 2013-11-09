@@ -9,12 +9,15 @@
 * compiled file, but it's generally better to create a new file per style scope.
 *
 *= require_self
-*= require_tree .
 */
 
 
 // import original bootstrap
 @import "twitter/bootstrap";
+
+@import "variables";
+@import "bootstrap-narrow.css.scss";
+
 
 
 //background

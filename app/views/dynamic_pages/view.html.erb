@@ -1,5 +1,6 @@
 <%= @category %>
 
+
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];
@@ -9,22 +10,49 @@
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+<script type="text/javascript">
+	var id = -1;
+
+	function newContent() {
+		$.ajax({ 
+			url: "/next",
+			type: "POST",
+			data: (id < 0) ? null : { content_id: id, like: $(this).attr("id") },
+			dataType: "json", 
+			success: function(response) {
+				$("#content").html(response["title"]);
+				id = response["id"];
+			}
+
+		});
+	};
+
+	$(document).ready(function() {
+		alert("Hello");
+		newContent();
+		$(".next").click(newContent);
+	});
+</script>
+
+
+
+
+
+
+
 <div id="content-container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
-			
-
 			<div class="row" id="content">
-
 			</div>
 
 			<div class="row">
 				<div class="col-md-4">
-					<a href="">
-						<button type="button" class="btn btn-danger btn-lg">
-							<span class="glyphicon glyphicon-thumbs-down"></span> Downvote
-						</button>	
-					</a>
+					
+					<a type="button" class="btn btn-danger btn-lg next" id="downvote">
+						<span class="glyphicon glyphicon-thumbs-down"></span> Downvote
+					</a>	
+					
 				</div>
 
 				<div class="col-md-4 middle">
@@ -33,7 +61,7 @@
 					</div>
 					<div class="row three-button-group">
 						<button type="button" class="btn btn-default btn-sm">
-						<span class="glyphicon glyphicon-star-empty"></span> Save
+							<span class="glyphicon glyphicon-star-empty"></span> Save
 						</button>
 					</div>
 					<div class="row three-button-group" id="report-link">
@@ -45,9 +73,10 @@
 
 
 				<div class="col-md-4">
-					<button type="button" class="btn btn-success btn-lg">
+
+					<a type="button" class="btn btn-success btn-lg next" id="upvote">
 						<span class="glyphicon glyphicon-thumbs-up"></span> Upvote
-					</button>
+					</a>
 					
 				</div>
 
