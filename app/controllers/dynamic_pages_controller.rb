@@ -33,7 +33,7 @@ class DynamicPagesController < ApplicationController
   		type = Type.find_by_name(params[:type])
   		category = Category.find_by_slug(params[:category])
 
-  		@content = Content.new(type_id: type.id, text: params[:text], title: params[:title], category_id: category.id)
+  		@content = Content.new(type_id: type.id, text: params[:text], title: params[:title], category_id: category.id, user_id: current_user.id)
   		@submitted = true
 
   		if @content.save

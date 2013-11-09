@@ -2,7 +2,7 @@ class Content < ActiveRecord::Base
   include GraphNode
   include Rails.application.routes.url_helpers
 
-  attr_accessible :title, :text, :submit, :category_id, :type_id
+  attr_accessible :title, :text, :submit, :category_id, :type_id, :user_id
 
   set_table_name 'content'
 

@@ -3,6 +3,7 @@
 <head>
 	<title>Doitmrw</title>
 	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 	<meta name="description" content="">
@@ -17,8 +18,8 @@
 					<li><a href="#"><%= current_user.name %></a></li>
 					<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
 				<% else -%>
-					<li><%= link_to "<i class=\"icon-facebook\"></i> Log In".html_safe, user_omniauth_authorize_path(:facebook) %></li>
-					<li><%= link_to "<i class=\"icon-facebook\"></i> Sign Up".html_safe, user_omniauth_authorize_path(:facebook) %></li>
+					<li><%= link_to "<i class=\"fa fa-facebook-square\"></i> Log In".html_safe, user_omniauth_authorize_path(:facebook) %></li>
+					<li><%= link_to "<i class=\"fa fa-facebook-square\"></i> Sign Up".html_safe, user_omniauth_authorize_path(:facebook) %></li>
 				<% end -%>
 				<li>
 				<% if user_signed_in? -%>
