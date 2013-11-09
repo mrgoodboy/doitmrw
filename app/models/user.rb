@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :provider, :uid, :email, :guest
 
   has_many :edges
-  has_many :content, through: :edges
+  has_many :content
 
   devise :omniauthable, :omniauth_providers => [:facebook]
 
