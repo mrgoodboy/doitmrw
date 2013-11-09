@@ -20,10 +20,7 @@ module DynamicPagesHelper
     else
       content = Content.only_new.order('RANDOM()').first #if it receives the 3rd dislike, remove the new tag
     end
-  
-    # while check_edge(current_user.id,content.id)
-    #   content = new_content(category_id)
-    # end
+    
     reset_edges
     content
   end
@@ -92,16 +89,13 @@ module DynamicPagesHelper
       edge1 = session[:edges][0]
       edge2 = session[:edges][1]
       edge3 = session[:edges][2]
-      content2 = edge3.content
+      content = edge3.content
 
 
-      # time = Time.now
-
-      # time_decay_const = 1 - (uct*(time - content1.created_at))
       time_decay_const = 0.99
       decay_time(category_id,time_decay_const)
 
-      average = content2.weight_average(category_id) #is average a stored variable in ruby
+      average = content.weight_average(category_id) #is average a stored variable in ruby
 
       edge1.weight = edge1.weight + ucc
       edge1.save
@@ -125,7 +119,7 @@ module DynamicPagesHelper
       edge1 = session[:edges][0]
       edge2 = session[:edges][1]
       edge3 = session[:edges][2]
-      content2 = edge3.content
+      content = edge3.content
 
       ucc = 0.3
       avgc = 0.1
@@ -134,7 +128,7 @@ module DynamicPagesHelper
       time_decay_const = 0.99
       decay_time(category_id,time_decay_const)
 
-      average = content2.weight_average(category_id)
+      average = content.weight_average(category_id)
 
       edge1.weight = edge1.weight - ucc
       if edge1.weight < 0
@@ -157,6 +151,12 @@ module DynamicPagesHelper
 
     edge4.weight = 0
     edge4.save
+    #content2 = edge4.content
+    #if content2.type = new
+      #for edge in content2.edges
+        #sum++
+      #if sum >=3
+        #content2.type = old
   end
 
   def reset_edges
