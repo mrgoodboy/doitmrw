@@ -42,7 +42,7 @@
 				id = response["id"];
 				permalink = response["permalink"];
 
-				$(".fb-share-button").attr("data-href", permalink);
+				$(".fb-share-button").prop("data-href", permalink);
 
 				if (response["type_id"] == 3) {
 					
