@@ -42,10 +42,13 @@
 				id = response["id"];
 				permalink = response["permalink"];
 
-				$(".fb-share-button").prop("data-href", permalink);
+
+				$(".fb-share-button").ready(function(){
+					$(".fb-share-button").prop("data-href", permalink);
+				});
+
 
 				if (response["type_id"] == 3) {
-					
 					styleText();
 				}
 			}
@@ -111,7 +114,7 @@
 
 				<div class="col-md-4 middle">
 					<div class="row three-button-group">
-						<div class="fb-share-button" data-href="http://facebook.com" data-type="button"></div>
+						<div class="fb-share-button" data-href="" data-type="button"></div>
 					</div>
 					<div class="row three-button-group">
 						<button type="button" class="btn btn-default btn-sm">
