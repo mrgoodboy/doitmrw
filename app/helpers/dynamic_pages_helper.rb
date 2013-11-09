@@ -18,7 +18,7 @@ module DynamicPagesHelper
     if Content.only_new.count.zero?
       content = random_content(category_id)
     else
-      content = Content.only_new.order('RANDOM()').first
+      content = Content.only_new.where(category_id: category_id).order('RANDOM()').first
       if check_edge(content.id,current_user.id)
         content = random_content(category_id)
       end
@@ -59,7 +59,7 @@ module DynamicPagesHelper
   end
 
   def random_content(category_id)
-    content = Content.order('RANDOM()').first
+    content = Content.where(category_id: category_id).order('RANDOM()').first
     reset_edges
     content
   end
