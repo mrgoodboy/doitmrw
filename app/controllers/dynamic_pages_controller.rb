@@ -41,8 +41,11 @@ class DynamicPagesController < ApplicationController
           redirect_to upload_path and return
         end
         url = URI.parse (params[:text])
-        res = Net::HTTP::head(url.path)
-        unless (res.content_type =~ /^image\//)
+        res = nil
+        Net::HTTP.start(url.host) {|http|
+          res = http.head(url.path)
+        }
+        unless (res && res.content_type =~ /^image\//)
           flash["error"] = "It looks like that wasn't an image. Double-check the URL."
           redirect_to upload_path and return
         end
