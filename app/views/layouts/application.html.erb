@@ -19,7 +19,7 @@
 					<li><%= link_to "<i class=\"icon-facebook\"></i> Log In".html_safe, user_omniauth_authorize_path(:facebook) %></li>
 					<li><%= link_to "<i class=\"icon-facebook\"></i> Sign Up".html_safe, user_omniauth_authorize_path(:facebook) %></li>
 				<% end -%>
-				<li><%= link_to "Upload".html_safe, user_omniauth_authorize_path(:facebook) %></li>
+				<li><%= link_to "Upload".html_safe, user_omniauth_authorize_path(:facebook), id: "upload-button" %></li>
 			</ul>
 			<%= image_tag "logo.png" %>
 		</div>
