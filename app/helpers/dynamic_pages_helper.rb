@@ -97,22 +97,27 @@ module DynamicPagesHelper
     k2 = 0.5
     if session[:edges]
       edge1, edge2, edge3 = Edge.find(session[:edges])
-      content = edge3.content
+      Rollbar.report_message("Session[:edges] is set", 'info', edges: session[:edges])
+      if (edge1 && edge2 && edge3)
+        content = edge3.content
 
-      decay_const = 0.975
-      decay(category_id,decay_const)
+        decay_const = 0.975
+        decay(category_id,decay_const)
 
-      average = content.weight_average(category_id)
+        average = content.weight_average(category_id)
 
-      edge1.weight = edge1.weight + ucc
-      edge1.save
+        edge1.weight = edge1.weight + ucc
+        edge1.save
 
-      edge2.weight = edge2.weight + ucc
-      edge2.save
+        edge2.weight = edge2.weight + ucc
+        edge2.save
 
-      edge3.weight = edge3.weight + avgc*average + k
-      edge3.save
+        edge3.weight = edge3.weight + avgc*average + k
+        edge3.save
 
+      else
+        average = 1
+      end
       edge4.weight = avgc2 * average + k2
       edge4.save
     else
