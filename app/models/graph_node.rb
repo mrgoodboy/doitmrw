@@ -22,7 +22,7 @@ FROM (
     FROM edges
 ) t WHERE running_total > #{random} LIMIT 1)
     edge_id = User.connection.select_value(sql)
-    Edge.find_by_id(edge_id)
+    Edge.find_by_id(edge_id, include: [:user, :content])
   end
 
   def edge_count

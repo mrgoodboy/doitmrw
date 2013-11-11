@@ -2,7 +2,7 @@ module DynamicPagesHelper
   #we want the database to have the function get_average(Content), returns the average weight of the content
 
   def check_edge(user_id, content_id)
-    !!Edge.where(user_id: user_id, content_id: content_id)
+    Edge.where(user_id: user_id, content_id: content_id).exists?
   end
 
   def next_content(category_id) #returns content of the next page
@@ -33,7 +33,13 @@ module DynamicPagesHelper
     end
     edge1 = current_user.random_edge(category_id)
 
+    if (edge1.nil?)
+      # no content!
+      return new_content(category_id)
+    end
+
     content1 = edge1.content
+
 
     if (content1.edges.count < 2)
       return new_content(category_id)

@@ -98,7 +98,11 @@ class DynamicPagesController < ApplicationController
   end
 
   def connect(user_id, content_id, category_id)
-    Edge.create(user_id: user_id, content_id: content_id, category_id: category_id)
+    if check_edge(user_id, content_id)
+      Edge.where(user_id: user_id, content_id: content_id).first
+    else
+      Edge.create(user_id: user_id, content_id: content_id, category_id: category_id)
+    end
   end
 
   def uri?(string)
