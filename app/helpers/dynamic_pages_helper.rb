@@ -112,12 +112,10 @@ module DynamicPagesHelper
         edge2.weight = edge2.weight + ucc
         edge2.save
 
-        edge3.weight = edge3.weight + avgc*average + k
+        edge3.weight = edge3.weight + ucc
         edge3.save
-
-      else
-        average = 1
       end
+      average = 1
       edge4.weight = avgc2 * average + k2
       edge4.save
     else
