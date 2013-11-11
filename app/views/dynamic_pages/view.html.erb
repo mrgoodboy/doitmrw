@@ -1,27 +1,27 @@
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=376094965858032";
-  fjs.parentNode.insertBefore(js, fjs);
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=376094965858032";
+	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
 
 <script>
 //disables footer buttons
-	$(document).ready(function(){
-		if (window.location.pathname.indexOf("funny") !== -1) {
-			
-			$("#s-funny-button").addClass("selected");
-		} else if (window.location.pathname.indexOf("cool") !== -1) {
-			$("#s-cool-button").addClass("selected");
-		} if (window.location.pathname.indexOf("cute") !== -1) {
-			$("#s-cute-button").addClass("selected");
-		} if (window.location.pathname.indexOf("weird") !== -1) {
-			$("#s-weird-button").addClass("selected");
-		}
-	});
+$(document).ready(function(){
+	if (window.location.pathname.indexOf("funny") !== -1) {
+
+		$("#s-funny-button").addClass("selected");
+	} else if (window.location.pathname.indexOf("cool") !== -1) {
+		$("#s-cool-button").addClass("selected");
+	} if (window.location.pathname.indexOf("cute") !== -1) {
+		$("#s-cute-button").addClass("selected");
+	} if (window.location.pathname.indexOf("weird") !== -1) {
+		$("#s-weird-button").addClass("selected");
+	}
+});
 </script>
 
 
@@ -32,14 +32,14 @@
 		<div class="col-md-10 col-md-offset-1">
 
 			<div class="row">
-					
-					<div id="spinner"><i class="fa fa-spinner fa-spin"></i></div>
-					
-					<div id="content">
-						<% if @content  %>
-							<%= @content.html %>
-		 				<% end %>
-					</div>
+
+				<div id="spinner"><i class="fa fa-spinner fa-spin"></i></div>
+
+				<div id="content">
+					<% if @content  %>
+					<%= @content.html %>
+					<% end %>
+				</div>
 				
 			</div>
 
@@ -57,7 +57,6 @@
 
 				<div class="col-md-4 middle">
 					<div class="row three-button-group" id="fbposition">
-						<div class="fb-share-button" data-href="" data-type="button"></div>
 						
 					</div>
 					<div class="row three-button-group">
@@ -93,59 +92,62 @@
 <script type="text/javascript">
 //ajax requesting content
 
-	function styleText() {
-		$("#content").addClass("well");
-		$("#spinner").css("visibility", "hidden");
-	};
-	function unstyleText() {
-		$("#content").removeClass("well");
-		$("#spinner").css("visibility", "visible");
-	};
+function styleText() {
+	$("#content").addClass("well");
+	$("#spinner").css("visibility", "hidden");
+};
+function unstyleText() {
+	$("#content").removeClass("well");
+	$("#spinner").css("visibility", "visible");
+};
 
-	var id = -1;
-	var permalink = "";
-	function newContent() {
-		$('#content').html('');
-		$.ajax({ 
+var id = -1;
+var permalink = "";
+function newContent() {
+	$('#content').html('');
+	$.ajax({ 
 
-			url: "/next/<%=params[:category]%>",
-			type: "POST",
-			data: (id < 0) ? null : { content_id: id, like: $(this).attr('data-like') },
-			dataType: "json", 
-			success: function(response) {
-				unstyleText();
-
-
-				$("#content").html(response["to_html"]);
-
-				$("#uploader").html("<span>" + response["title"] + "</span>");
-				$("#uploader").append("<a class='pull-right' href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
-
-				id = response["id"];
-				
+		url: "/next/<%=params[:category]%>",
+		type: "POST",
+		data: (id < 0) ? null : { content_id: id, like: $(this).attr('data-like') },
+		dataType: "json", 
+		success: function(response) {
+			unstyleText();
 
 
-				if (response["type_id"] == 3) {
-					styleText();
-				}
+			$("#content").html(response["to_html"]);
 
-				permalink = response["permalink"];
+			$("#uploader").html("<span>" + response["title"] + "</span>");
+			$("#uploader").append("<a class='pull-right' href='/users/" + response["user_id"] + "'>" + response["uploader"] + "</a>");
+
+			id = response["id"];
 
 
-				$(".fb-share-button").attr("data-href", permalink);
-				if (FB) {
-					FB.XFBML.parse();
-				}
+
+			if (response["type_id"] == 3) {
+				styleText();
 			}
-		});
-	};
 
-	$(document).ready(function() {
-		
-		<% if @content == nil %>
-			newContent();
-		<% end %>
+			permalink = response["permalink"];
 
-		$(".next").click(newContent);
+
+			$("#fbposition").html("<div class='fb-like' data-href='" + permalink + "' data-layout='box_count' data-action='like' data-show-faces='true' data-share='false'></div>");
+		}
 	});
+};
+
+$(document).ready(function() {
+	$(document).ajaxComplete(function(){
+		try{
+			FB.XFBML.parse(); 
+		}catch(ex){}
+	});
+
+
+	<% if @content == nil %>
+	newContent();
+	<% end %>
+
+	$(".next").click(newContent);
+});
 </script>
