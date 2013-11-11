@@ -137,7 +137,7 @@ module DynamicPagesHelper
         decay_const = 0.975
         decay(category_id,decay_const)
 
-        average = content.weight_average(category_id)
+        average = 1 #content.weight_average(category_id)
 
         edge1.weight = edge1.weight - ucc
         if edge1.weight < 0
