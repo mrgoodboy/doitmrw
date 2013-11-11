@@ -129,34 +129,36 @@ module DynamicPagesHelper
   def adjust_dislike(category_id, edge4)
     if session[:edges]
       edge1, edge2, edge3 = Edge.find(session[:edges])
-      content = edge3.content
+      if (edge1 && edge2 && edge3)
+        content = edge3.content
 
-      ucc = 0.3
-      avgc = 0.1
-      k = 0.4
+        ucc = 0.3
+        avgc = 0.1
+        k = 0.4
 
-      decay_const = 0.975
-      decay(category_id,decay_const)
+        decay_const = 0.975
+        decay(category_id,decay_const)
 
-      average = content.weight_average(category_id)
+        average = content.weight_average(category_id)
 
-      edge1.weight = edge1.weight - ucc
-      if edge1.weight < 0
-        edge1.weight = 0
+        edge1.weight = edge1.weight - ucc
+        if edge1.weight < 0
+          edge1.weight = 0
+        end
+        edge1.save
+
+        edge2.weight = edge2.weight - ucc
+        if edge2.weight < 0
+          edge2.weight = 0
+        end
+        edge2.save
+
+        edge3.weight = edge3.weight + avgc*average - k
+        if edge3.weight < 0
+          edge3.weight = 0
+        end
+        edge3.save
       end
-      edge1.save
-
-      edge2.weight = edge2.weight - ucc
-      if edge2.weight < 0
-        edge2.weight = 0
-      end
-      edge2.save
-
-      edge3.weight = edge3.weight + avgc*average - k
-      if edge3.weight < 0
-        edge3.weight = 0
-      end
-      edge3.save
     end
 
     edge4.weight = 0
