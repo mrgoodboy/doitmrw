@@ -59,7 +59,7 @@ module DynamicPagesHelper
     if check_edge(content2.id,current_user.id)
       return new_content(category_id)
     else
-      session[:edges] = [edge1,edge2,edge3]
+      session[:edges] = [edge1.id,edge2.id,edge3.id]
     end
     content2
   end
@@ -96,9 +96,7 @@ module DynamicPagesHelper
     avgc2 = 0.5
     k2 = 0.5
     if session[:edges]
-      edge1 = session[:edges][0]
-      edge2 = session[:edges][1]
-      edge3 = session[:edges][2]
+      edge1, edge2, edge3 = Edge.find(session[:edges])
       content = edge3.content
 
       decay_const = 0.975
@@ -125,9 +123,7 @@ module DynamicPagesHelper
 
   def adjust_dislike(category_id, edge4)
     if session[:edges]
-      edge1 = session[:edges][0]
-      edge2 = session[:edges][1]
-      edge3 = session[:edges][2]
+      edge1, edge2, edge3 = Edge.find(session[:edges])
       content = edge3.content
 
       ucc = 0.3
