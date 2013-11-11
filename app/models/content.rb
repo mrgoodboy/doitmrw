@@ -1,6 +1,7 @@
 class Content < ActiveRecord::Base
   include GraphNode
   include Rails.application.routes.url_helpers
+  include ActionView::Helpers::SanitizeHelper
 
   attr_accessible :title, :text, :submit, :category_id, :type_id, :user_id, :new
 
@@ -33,7 +34,7 @@ class Content < ActiveRecord::Base
   def to_html
     case type.name
     when 'text'
-      text
+      sanitize text
     when 'image'
       "<img src=\"#{text}\" alt=\"#{title}\" />"
     when 'video'

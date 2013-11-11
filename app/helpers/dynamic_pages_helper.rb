@@ -79,7 +79,7 @@ module DynamicPagesHelper
   end
 
   def decay(category_id, const)
-    category_id = get_category_id(category_id)
+    category_id = category_id
     sql = %Q(
             UPDATE edges
               SET weight = weight * #{const}
