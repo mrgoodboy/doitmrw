@@ -113,8 +113,6 @@ function newContent() {
 		dataType: "json", 
 		success: function(response) {
 			unstyleText();
-
-
 			$("#content").html(response["to_html"]);
 
 			$("#uploader").html("<span>" + response["title"] + "</span>");
@@ -136,11 +134,11 @@ function newContent() {
 };
 
 $(document).ready(function() {
-	$(document).ajaxComplete(function(){
-		try{
-			FB.XFBML.parse(); 
-		}catch(ex){}
-	});
+	// $(document).ajaxComplete(function(){
+	// 	try{
+	// 		FB.XFBML.parse(); 
+	// 	}catch(ex){}
+	// });
 
 
 	<% if @content == nil %>
