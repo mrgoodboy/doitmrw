@@ -10,21 +10,22 @@ module DynamicPagesHelper
     if rand < 0.33
       new_content(category_id)
     else
-      old_content(category_id)
+      new_content(category_id)
     end
   end
 
   def new_content(category_id)
-    if Content.only_new.count.zero?
-      content = random_content(category_id)
-    else
-      content = Content.only_new.where(category_id: category_id).order('RANDOM()').first
-      if check_edge(content.id,current_user.id)
-        content = random_content(category_id)
-      end
-    end
-    reset_edges
-    content
+    # if Content.only_new.count.zero?
+    #   content = random_content(category_id)
+    # else
+    #   content = Content.only_new.where(category_id: category_id).order('RANDOM()').first
+    #   if check_edge(content.id,current_user.id)
+    #     content = random_content(category_id)
+    #   end
+    # end
+    # reset_edges
+    # content
+    random_content(category_id)
   end
 
   def old_content(category_id)
